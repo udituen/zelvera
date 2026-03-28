@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zelvra Digital Agency — Where Strategy Meets Luxury</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@100;200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #060606;
+  --black2: #0c0c0c;
+  --gold: #C9A84C;
+  --gold-light: #E8D48A;
+  --gold-dark: #7A5C1E;
+  --white: #F7F2EA;
+  --grey: #555;
+  --grey2: #333;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── CUSTOM CURSOR ── */
+.cursor {
+  position: fixed;
+  width: 8px; height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.15s ease;
+  transform: translate(-50%, -50%);
+}
+.cursor-ring {
+  position: fixed;
+  width: 32px; height: 32px;
+  border: 1px solid rgba(201,168,76,0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transition: transform 0.4s ease, width 0.3s, height 0.3s, opacity 0.3s;
+  transform: translate(-50%, -50%);
+}
+body:hover .cursor-ring { opacity: 1; }
+
+/* ── NOISE OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 900;
+  padding: 28px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(180deg, rgba(6,6,6,0.95) 0%, transparent 100%);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+}
+.nav-logo-z {
+  width: 32px; height: 32px;
+}
+.nav-logo-vline {
+  width: 1px; height: 28px;
+  background: linear-gradient(180deg, transparent, var(--gold), transparent);
+  opacity: 0.5;
+}
+.nav-logo-text { display: flex; flex-direction: column; gap: 2px; }
+.nav-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 18px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--white);
+}
+.nav-sub {
+  font-size: 6px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.nav-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--grey);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--gold); }
+
+.nav-cta {
+  font-size: 8px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  border: 1px solid rgba(201,168,76,0.3);
+  padding: 10px 24px;
+  transition: all 0.3s;
+}
+.nav-cta:hover {
+  background: rgba(201,168,76,0.08);
+  border-color: var(--gold);
+}
+
+/* ── HERO ── */
+#hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+canvas#neural {
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 0 20px;
+  animation: heroFade 1.4s ease forwards;
+  opacity: 0;
+}
+
+@keyframes heroFade {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-tag {
+  font-size: 8px;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.hero-tag::before, .hero-tag::after {
+  content: '';
+  width: 40px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+.hero-tag::after { background: linear-gradient(90deg, var(--gold), transparent); }
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(56px, 8vw, 110px);
+  letter-spacing: 6px;
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+.hero-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(18px, 2.5vw, 28px);
+  color: rgba(247,242,234,0.45);
+  margin-bottom: 50px;
+  letter-spacing: 2px;
+}
+
+.hero-divider {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(180deg, var(--gold), transparent);
+  margin: 0 auto 50px;
+  opacity: 0.5;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  font-size: 8px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--gold);
+  padding: 16px 40px;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.btn-primary:hover { background: var(--gold-light); }
+
+.btn-secondary {
+  font-size: 8px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(201,168,76,0.35);
+  padding: 16px 40px;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.btn-secondary:hover {
+  border-color: var(--gold);
+  background: rgba(201,168,76,0.06);
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  animation: bounce 2s infinite;
+}
+.hero-scroll span {
+  font-size: 6px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--grey);
+}
+.hero-scroll-line {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(180deg, var(--grey), transparent);
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ── MARQUEE ── */
+.marquee-wrap {
+  border-top: 1px solid #111;
+  border-bottom: 1px solid #111;
+  padding: 18px 0;
+  overflow: hidden;
+  background: #060606;
+}
+.marquee-track {
+  display: flex;
+  gap: 60px;
+  animation: marquee 20s linear infinite;
+  white-space: nowrap;
+}
+.marquee-track span {
+  font-size: 9px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--grey);
+  flex-shrink: 0;
+}
+.marquee-track .dot {
+  color: var(--gold);
+  font-size: 14px;
+  line-height: 1;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ── SECTION BASE ── */
+section { padding: 120px 60px; }
+
+.section-label {
+  font-size: 8px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 60px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.section-label::before {
+  content: '';
+  width: 30px; height: 1px;
+  background: var(--gold);
+}
+
+/* ── ABOUT ── */
+#about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.about-left .section-label { margin-bottom: 30px; }
+.about-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(36px, 4vw, 56px);
+  line-height: 1.2;
+  letter-spacing: 2px;
+  color: var(--white);
+  margin-bottom: 30px;
+}
+.about-heading em { font-style: italic; color: var(--gold-light); }
+.about-body {
+  font-size: 13px;
+  line-height: 2;
+  color: rgba(247,242,234,0.5);
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+}
+.about-right {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+.stat-box {
+  background: #0d0d0d;
+  border: 1px solid #141414;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: border-color 0.3s;
+}
+.stat-box:hover { border-color: rgba(201,168,76,0.2); }
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 8px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--grey);
+}
+
+/* ── SERVICES ── */
+#services {
+  background: #080808;
+  max-width: 100%;
+  padding: 120px 60px;
+}
+.services-inner { max-width: 1200px; margin: 0 auto; }
+.services-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 70px;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+.services-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(36px, 4vw, 56px);
+  letter-spacing: 2px;
+  color: var(--white);
+}
+.services-title em { font-style: italic; color: var(--gold-light); }
+.services-desc {
+  max-width: 300px;
+  font-size: 12px;
+  line-height: 1.9;
+  color: rgba(247,242,234,0.4);
+  letter-spacing: 0.5px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+.service-card {
+  background: #0a0a0a;
+  border: 1px solid #141414;
+  padding: 50px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: all 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+.service-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+.service-card:hover::after { transform: scaleX(1); }
+.service-card:hover { border-color: #1e1e1e; }
+
+.service-card.featured {
+  background: linear-gradient(145deg, #0f0d00, #080700);
+  border-color: rgba(201,168,76,0.15);
+}
+.service-card.featured::after { transform: scaleX(1); }
+
+.service-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  color: var(--gold-dark);
+  letter-spacing: 2px;
+}
+.service-icon {
+  width: 42px; height: 42px;
+  opacity: 0.7;
+}
+.service-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 24px;
+  letter-spacing: 1px;
+  color: var(--white);
+}
+.service-body {
+  font-size: 12px;
+  line-height: 1.9;
+  color: rgba(247,242,234,0.4);
+  letter-spacing: 0.3px;
+}
+.service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+.tag {
+  font-size: 7px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  border: 1px solid rgba(201,168,76,0.2);
+  padding: 4px 10px;
+}
+.tag.gold { color: var(--gold); border-color: rgba(201,168,76,0.4); }
+
+/* ── AI SECTION ── */
+#ai {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 120px 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+}
+.ai-visual {
+  position: relative;
+  height: 400px;
+}
+canvas#aiCanvas {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #141414;
+}
+.ai-badge {
+  position: absolute;
+  bottom: -20px; right: -20px;
+  background: var(--gold);
+  color: var(--black);
+  padding: 16px 24px;
+  font-size: 7px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.ai-content .section-label { margin-bottom: 30px; }
+.ai-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(32px, 3.5vw, 48px);
+  line-height: 1.25;
+  letter-spacing: 1px;
+  color: var(--white);
+  margin-bottom: 30px;
+}
+.ai-heading em { font-style: italic; color: var(--gold-light); }
+.ai-body {
+  font-size: 13px;
+  line-height: 2;
+  color: rgba(247,242,234,0.45);
+  margin-bottom: 40px;
+  letter-spacing: 0.3px;
+}
+.ai-features { display: flex; flex-direction: column; gap: 0; }
+.ai-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid #111;
+}
+.ai-feature:first-child { border-top: 1px solid #111; }
+.ai-feature-dot {
+  width: 6px; height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+.ai-feature-text {
+  font-size: 12px;
+  line-height: 1.8;
+  color: rgba(247,242,234,0.5);
+  letter-spacing: 0.3px;
+}
+.ai-feature-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  color: var(--white);
+  display: block;
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+}
+
+/* ── PHILOSOPHY ── */
+#philosophy {
+  background: #040404;
+  padding: 120px 60px;
+  text-align: center;
+}
+.philosophy-inner { max-width: 800px; margin: 0 auto; }
+.philosophy-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(28px, 4vw, 52px);
+  line-height: 1.4;
+  color: var(--white);
+  margin-bottom: 40px;
+  letter-spacing: 1px;
+}
+.philosophy-quote em { color: var(--gold-light); font-style: normal; }
+.philosophy-attr {
+  font-size: 8px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.philosophy-line {
+  width: 60px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 30px auto;
+}
+
+/* ── PROCESS ── */
+#process {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 120px 60px;
+}
+.process-header { margin-bottom: 70px; }
+.process-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(36px, 4vw, 52px);
+  letter-spacing: 2px;
+  color: var(--white);
+  margin-top: 16px;
+}
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+.step {
+  padding: 40px 30px;
+  border-top: 2px solid #141414;
+  position: relative;
+  transition: border-color 0.3s;
+}
+.step:hover { border-color: var(--gold-dark); }
+.step-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 60px;
+  font-weight: 300;
+  color: #111;
+  line-height: 1;
+  margin-bottom: 20px;
+}
+.step-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  color: var(--white);
+  margin-bottom: 14px;
+  letter-spacing: 1px;
+}
+.step-desc {
+  font-size: 11px;
+  line-height: 1.9;
+  color: rgba(247,242,234,0.4);
+  letter-spacing: 0.3px;
+}
+
+/* ── CTA ── */
+#cta {
+  background: linear-gradient(145deg, #0a0800, #060600);
+  border-top: 1px solid #1a1500;
+  border-bottom: 1px solid #1a1500;
+  padding: 120px 60px;
+  text-align: center;
+}
+.cta-tag {
+  font-size: 8px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  margin-bottom: 30px;
+}
+.cta-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(40px, 6vw, 80px);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 20px;
+}
+.cta-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 20px;
+  color: rgba(247,242,234,0.35);
+  margin-bottom: 50px;
+  letter-spacing: 1px;
+}
+.cta-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(201,168,76,0.3);
+  padding-bottom: 8px;
+  transition: border-color 0.3s;
+}
+.cta-email:hover { border-color: var(--gold); }
+
+/* ── FOOTER ── */
+footer {
+  background: #040404;
+  border-top: 1px solid #111;
+  padding: 50px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.footer-copy {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #333;
+}
+.footer-links {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+.footer-links a {
+  font-size: 8px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--gold); }
+
+/* ── ANIMATIONS ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 900px) {
+  nav { padding: 20px 24px; }
+  .nav-links { display: none; }
+  section { padding: 80px 24px; }
+  #about { grid-template-columns: 1fr; gap: 50px; }
+  .services-grid { grid-template-columns: 1fr; }
+  #ai { grid-template-columns: 1fr; gap: 50px; padding: 80px 24px; }
+  .ai-visual { height: 260px; }
+  .process-steps { grid-template-columns: 1fr 1fr; }
+  footer { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- CURSORS -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg class="nav-logo-z" width="32" height="32" viewBox="0 0 52 52" fill="none">
+      <polygon points="6,8 46,8 6,44 46,44 46,36 16,36 46,20 46,8" fill="#C9A84C"/>
+    </svg>
+    <div class="nav-logo-vline"></div>
+    <div class="nav-logo-text">
+      <span class="nav-brand">Zelvra</span>
+      <span class="nav-sub">Digital Agency</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#ai">AI Solutions</a></li>
+    <li><a href="#process">Process</a></li>
+  </ul>
+  <a href="#cta" class="nav-cta">Start a Project</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="neural"></canvas>
+  <div class="hero-content">
+    <div class="hero-tag">Premium Digital Marketing</div>
+    <h1 class="hero-title">Where Strategy<br>Meets <em>Luxury</em></h1>
+    <p class="hero-sub">AI-powered marketing for brands that refuse to blend in</p>
+    <div class="hero-divider"></div>
+    <div class="hero-actions">
+      <a href="#services" class="btn-primary">Explore Services</a>
+      <a href="#cta" class="btn-secondary">Let's Talk</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>Brand Strategy</span><span class="dot">·</span>
+    <span>AI-Powered Marketing</span><span class="dot">·</span>
+    <span>Digital Campaigns</span><span class="dot">·</span>
+    <span>Content Creation</span><span class="dot">·</span>
+    <span>Performance Analytics</span><span class="dot">·</span>
+    <span>Social Media</span><span class="dot">·</span>
+    <span>SEO & Growth</span><span class="dot">·</span>
+    <span>Brand Strategy</span><span class="dot">·</span>
+    <span>AI-Powered Marketing</span><span class="dot">·</span>
+    <span>Digital Campaigns</span><span class="dot">·</span>
+    <span>Content Creation</span><span class="dot">·</span>
+    <span>Performance Analytics</span><span class="dot">·</span>
+    <span>Social Media</span><span class="dot">·</span>
+    <span>SEO & Growth</span><span class="dot">·</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section style="padding:120px 60px;">
+  <div id="about" class="reveal">
+    <div class="about-left">
+      <div class="section-label">About Zelvra</div>
+      <h2 class="about-heading">We don't just market brands.<br>We <em>elevate</em> them.</h2>
+      <p class="about-body">Zelvra Digital Agency is a premium marketing firm built on the belief that every brand has the potential for greatness — it simply needs the right strategy, the right story, and the right partner.</p>
+      <p class="about-body">Founded by Imoh Ituen, Zelvra merges cutting-edge AI technology with timeless marketing principles to deliver results that are not only measurable, but unforgettable.</p>
+    </div>
+    <div class="about-right">
+      <div class="stat-box">
+        <span class="stat-num">150+</span>
+        <span class="stat-label">Brands Elevated</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-num">98%</span>
+        <span class="stat-label">Client Retention</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-num">12x</span>
+        <span class="stat-label">Avg. ROI Delivered</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-num">5★</span>
+        <span class="stat-label">Client Satisfaction</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" style="padding:0;">
+  <div class="services-inner" style="padding:120px 0;">
+    <div class="services-header reveal">
+      <div>
+        <div class="section-label">What We Do</div>
+        <h2 class="services-title">Services crafted<br>for <em>impact</em></h2>
+      </div>
+      <p class="services-desc">Every service we offer is designed to move the needle — not just look good on a report.</p>
+    </div>
+    <div class="services-grid reveal">
+
+      <div class="service-card featured">
+        <span class="service-num">01</span>
+        <svg class="service-icon" viewBox="0 0 42 42" fill="none">
+          <circle cx="21" cy="21" r="8" stroke="#C9A84C" stroke-width="1"/>
+          <circle cx="21" cy="21" r="16" stroke="#C9A84C" stroke-width="0.5" stroke-dasharray="2 3"/>
+          <circle cx="21" cy="5" r="2.5" fill="#C9A84C"/>
+          <circle cx="37" cy="21" r="2.5" fill="#7A5C1E"/>
+          <circle cx="21" cy="37" r="2.5" fill="#7A5C1E"/>
+          <circle cx="5" cy="21" r="2.5" fill="#C9A84C"/>
+        </svg>
+        <h3 class="service-name">AI-Powered Marketing</h3>
+        <p class="service-body">We harness the power of artificial intelligence to predict consumer behaviour, automate campaigns, and optimise every touchpoint — delivering hyper-personalised experiences at scale.</p>
+        <div class="service-tags">
+          <span class="tag gold">AI Strategy</span>
+          <span class="tag gold">Automation</span>
+          <span class="tag gold">Predictive Analytics</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <span class="service-num">02</span>
+        <svg class="service-icon" viewBox="0 0 42 42" fill="none">
+          <rect x="4" y="10" width="34" height="22" rx="1" stroke="#C9A84C" stroke-width="1"/>
+          <line x1="4" y1="16" x2="38" y2="16" stroke="#C9A84C" stroke-width="0.5"/>
+          <circle cx="8" cy="13" r="1" fill="#C9A84C"/>
+          <circle cx="12" cy="13" r="1" fill="#7A5C1E"/>
+          <path d="M10 24 L16 19 L22 23 L30 17" stroke="#C9A84C" stroke-width="1" fill="none"/>
+        </svg>
+        <h3 class="service-name">Brand Strategy</h3>
+        <p class="service-body">From brand identity to market positioning, we craft compelling narratives that distinguish your business and create lasting impressions in the minds of your ideal audience.</p>
+        <div class="service-tags">
+          <span class="tag">Identity</span>
+          <span class="tag">Positioning</span>
+          <span class="tag">Messaging</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <span class="service-num">03</span>
+        <svg class="service-icon" viewBox="0 0 42 42" fill="none">
+          <path d="M8 32 L14 22 L20 26 L26 16 L32 20 L38 10" stroke="#C9A84C" stroke-width="1" fill="none"/>
+          <circle cx="8" cy="32" r="2" fill="#7A5C1E"/>
+          <circle cx="38" cy="10" r="2" fill="#C9A84C"/>
+          <line x1="4" y1="38" x2="4" y2="8" stroke="#555" stroke-width="0.5"/>
+          <line x1="4" y1="38" x2="40" y2="38" stroke="#555" stroke-width="0.5"/>
+        </svg>
+        <h3 class="service-name">Performance Campaigns</h3>
+        <p class="service-body">Data-driven paid media strategies across Google, Meta, LinkedIn and beyond. We maximise your ad spend with precision targeting, compelling creatives, and relentless optimisation.</p>
+        <div class="service-tags">
+          <span class="tag">Paid Media</span>
+          <span class="tag">PPC</span>
+          <span class="tag">Retargeting</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <span class="service-num">04</span>
+        <svg class="service-icon" viewBox="0 0 42 42" fill="none">
+          <path d="M21 4 L38 32 L4 32 Z" stroke="#C9A84C" stroke-width="1" fill="none"/>
+          <line x1="21" y1="14" x2="21" y2="24" stroke="#C9A84C" stroke-width="1"/>
+          <circle cx="21" cy="27" r="1.5" fill="#C9A84C"/>
+        </svg>
+        <h3 class="service-name">Content & SEO</h3>
+        <p class="service-body">We create authoritative, search-optimised content that positions your brand as an industry leader — attracting organic traffic and converting readers into loyal customers.</p>
+        <div class="service-tags">
+          <span class="tag">SEO</span>
+          <span class="tag">Copywriting</span>
+          <span class="tag">Content Strategy</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <span class="service-num">05</span>
+        <svg class="service-icon" viewBox="0 0 42 42" fill="none">
+          <circle cx="21" cy="21" r="17" stroke="#C9A84C" stroke-width="1"/>
+          <circle cx="21" cy="21" r="1.5" fill="#C9A84C"/>
+          <line x1="21" y1="4" x2="21" y2="38" stroke="#C9A84C" stroke-width="0.5"/>
+          <path d="M4 21 Q21 8 38 21" stroke="#C9A84C" stroke-width="0.5" fill="none"/>
+          <path d="M4 21 Q21 34 38 21" stroke="#C9A84C" stroke-width="0.5" fill="none"/>
+        </svg>
+        <h3 class="service-name">Social Media</h3>
+        <p class="service-body">Strategic social media management that builds communities, drives engagement, and converts followers into brand advocates — across every platform that matters to your audience.</p>
+        <div class="service-tags">
+          <span class="tag">Community</span>
+          <span class="tag">Engagement</span>
+          <span class="tag">Growth</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <span class="service-num">06</span>
+        <svg class="service-icon" viewBox="0 0 42 42" fill="none">
+          <rect x="6" y="6" width="13" height="13" rx="1" stroke="#C9A84C" stroke-width="1"/>
+          <rect x="23" y="6" width="13" height="13" rx="1" stroke="#7A5C1E" stroke-width="1"/>
+          <rect x="6" y="23" width="13" height="13" rx="1" stroke="#7A5C1E" stroke-width="1"/>
+          <rect x="23" y="23" width="13" height="13" rx="1" stroke="#C9A84C" stroke-width="1"/>
+        </svg>
+        <h3 class="service-name">Analytics & Insights</h3>
+        <p class="service-body">Turn raw data into strategic advantage. Our analytics frameworks reveal what's working, what isn't, and exactly where to focus your marketing investment for maximum returns.</p>
+        <div class="service-tags">
+          <span class="tag">Reporting</span>
+          <span class="tag">BI Dashboards</span>
+          <span class="tag">Attribution</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- AI SECTION -->
+<section style="background:#060606; padding:0;">
+  <div id="ai">
+    <div class="ai-visual reveal">
+      <canvas id="aiCanvas"></canvas>
+      <div class="ai-badge">AI-First Agency</div>
+    </div>
+    <div class="ai-content reveal">
+      <div class="section-label">AI Solutions</div>
+      <h2 class="ai-heading">Intelligence that <em>works</em><br>while you sleep</h2>
+      <p class="ai-body">We embed artificial intelligence into the core of every marketing strategy we build — not as a gimmick, but as a genuine competitive advantage that compounds over time.</p>
+      <div class="ai-features">
+        <div class="ai-feature">
+          <div class="ai-feature-dot"></div>
+          <div class="ai-feature-text">
+            <span class="ai-feature-title">Predictive Audience Intelligence</span>
+            AI models that identify your highest-value prospects before they even know they need you.
+          </div>
+        </div>
+        <div class="ai-feature">
+          <div class="ai-feature-dot"></div>
+          <div class="ai-feature-text">
+            <span class="ai-feature-title">Automated Campaign Optimisation</span>
+            Real-time bid management and creative rotation driven by machine learning — not gut instinct.
+          </div>
+        </div>
+        <div class="ai-feature">
+          <div class="ai-feature-dot"></div>
+          <div class="ai-feature-text">
+            <span class="ai-feature-title">AI Content Generation</span>
+            Scalable, on-brand content powered by large language models — reviewed and refined by human experts.
+          </div>
+        </div>
+        <div class="ai-feature">
+          <div class="ai-feature-dot"></div>
+          <div class="ai-feature-text">
+            <span class="ai-feature-title">Sentiment & Trend Analysis</span>
+            Stay ahead of cultural shifts with AI that monitors conversations and surfaces opportunities in real time.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section id="philosophy">
+  <div class="philosophy-inner reveal">
+    <p class="philosophy-quote">"A brand is not what you say it is.<br>It is what <em>they feel</em> when you leave the room."</p>
+    <div class="philosophy-line"></div>
+    <p class="philosophy-attr">Imoh Ituen — Founder, Zelvra Digital Agency</p>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section style="background:#080808; padding:0;">
+  <div id="process">
+    <div class="process-header reveal">
+      <div class="section-label">How We Work</div>
+      <h2 class="process-title">Precision from first brief<br>to final result</h2>
+    </div>
+    <div class="process-steps reveal">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3 class="step-name">Discover</h3>
+        <p class="step-desc">We immerse ourselves in your brand, your market, and your goals. Deep discovery that informs everything that follows.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3 class="step-name">Strategise</h3>
+        <p class="step-desc">Data meets creativity. We design a bespoke strategy that is both analytically sound and boldly differentiated.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3 class="step-name">Execute</h3>
+        <p class="step-desc">Flawless delivery across every channel. Our team executes with precision, leveraging AI to optimise in real time.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h3 class="step-name">Scale</h3>
+        <p class="step-desc">We analyse, iterate, and amplify what works — turning early wins into compounding, long-term growth for your brand.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="reveal">
+    <p class="cta-tag">Ready to Elevate Your Brand?</p>
+    <h2 class="cta-heading">Zelvra</h2>
+    <p class="cta-sub">Let's build something extraordinary together</p>
+    <a href="mailto:hello@zelvra.com" class="cta-email">
+      <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+        <rect x="0.5" y="0.5" width="13" height="9" rx="0.5" stroke="#C9A84C"/>
+        <path d="M0.5 1L7 5.5L13.5 1" stroke="#C9A84C"/>
+      </svg>
+      hello@zelvra.com
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-copy">© 2025 Zelvra Digital Agency. All rights reserved.</span>
+  <ul class="footer-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#ai">AI Solutions</a></li>
+    <li><a href="#cta">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+// ── CURSOR ──
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+function animCursor() {
+  cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+  rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+  requestAnimationFrame(animCursor);
+}
+animCursor();
+document.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('mouseenter', () => { ring.style.width = '50px'; ring.style.height = '50px'; ring.style.opacity = '0.6'; });
+  el.addEventListener('mouseleave', () => { ring.style.width = '32px'; ring.style.height = '32px'; ring.style.opacity = '1'; });
+});
+
+// ── NEURAL HERO CANVAS ──
+(function() {
+  const c = document.getElementById('neural');
+  const ctx = c.getContext('2d');
+  function resize() { c.width = c.offsetWidth; c.height = c.offsetHeight; }
+  resize(); window.addEventListener('resize', resize);
+  const N = 80;
+  const pts = Array.from({length:N}, () => ({
+    x: Math.random() * c.width, y: Math.random() * c.height,
+    vx: (Math.random()-0.5)*0.4, vy: (Math.random()-0.5)*0.4
+  }));
+  function draw() {
+    ctx.clearRect(0,0,c.width,c.height);
+    pts.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x<0||p.x>c.width) p.vx*=-1;
+      if (p.y<0||p.y>c.height) p.vy*=-1;
+    });
+    for (let i=0;i<N;i++) for (let j=i+1;j<N;j++) {
+      const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y;
+      const d=Math.sqrt(dx*dx+dy*dy);
+      if(d<130) {
+        ctx.beginPath();
+        ctx.moveTo(pts[i].x,pts[i].y);
+        ctx.lineTo(pts[j].x,pts[j].y);
+        ctx.strokeStyle=`rgba(201,168,76,${(1-d/130)*0.25})`;
+        ctx.lineWidth=0.5;
+        ctx.stroke();
+      }
+    }
+    pts.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,1.5,0,Math.PI*2);
+      ctx.fillStyle='rgba(201,168,76,0.5)';
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ── AI CANVAS ──
+(function() {
+  const c = document.getElementById('aiCanvas');
+  const ctx = c.getContext('2d');
+  function resize() { c.width = c.offsetWidth; c.height = c.offsetHeight; }
+  resize(); window.addEventListener('resize', resize);
+  const layers = [3,5,5,3];
+  let t = 0;
+  function draw() {
+    ctx.fillStyle='#080808';
+    ctx.fillRect(0,0,c.width,c.height);
+    const nodes = [];
+    const lw = c.width * 0.8, lh = c.height * 0.8;
+    const ox = c.width * 0.1, oy = c.height * 0.1;
+    layers.forEach((n,li) => {
+      const lx = ox + (li/(layers.length-1))*lw;
+      nodes.push([]);
+      for(let ni=0;ni<n;ni++) {
+        const ly = oy + ((ni+0.5)/n)*lh;
+        nodes[li].push({x:lx,y:ly});
+      }
+    });
+    // connections
+    for(let li=0;li<layers.length-1;li++) {
+      nodes[li].forEach(a => {
+        nodes[li+1].forEach(b => {
+          const pulse = (Math.sin(t*0.04 + a.x*0.01 + b.y*0.01)+1)*0.5;
+          ctx.beginPath();
+          ctx.moveTo(a.x,a.y);
+          ctx.lineTo(b.x,b.y);
+          ctx.strokeStyle=`rgba(201,168,76,${0.04 + pulse*0.15})`;
+          ctx.lineWidth=0.8;
+          ctx.stroke();
+        });
+      });
+    }
+    // nodes
+    nodes.forEach((layer,li) => {
+      layer.forEach((n,ni) => {
+        const pulse = (Math.sin(t*0.05+li*1.2+ni*0.7)+1)*0.5;
+        ctx.beginPath();
+        ctx.arc(n.x,n.y,4+pulse*3,0,Math.PI*2);
+        ctx.fillStyle=`rgba(201,168,76,${0.3+pulse*0.5})`;
+        ctx.fill();
+        // glow
+        const grd = ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,18);
+        grd.addColorStop(0,`rgba(201,168,76,${0.12*pulse})`);
+        grd.addColorStop(1,'transparent');
+        ctx.beginPath();
+        ctx.arc(n.x,n.y,18,0,Math.PI*2);
+        ctx.fillStyle=grd;
+        ctx.fill();
+      });
+    });
+    t++;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ── SCROLL REVEAL ──
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.1 });
+reveals.forEach(r => obs.observe(r));
+</script>
+</body>
+</html>
